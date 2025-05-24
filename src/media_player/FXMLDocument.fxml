@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.media.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1061.0" prefWidth="1763.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="media_player.FXMLDocumentController">
+   <right>
+      <VBox fx:id="sidebarVBox" prefHeight="200.0" prefWidth="450.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox fx:id="buttonContainerHBox" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <ToggleButton fx:id="musicToggleButton" mnemonicParsing="false" prefWidth="225.0" text="Music" />
+                  <ToggleButton fx:id="videoToggleButton" mnemonicParsing="false" prefWidth="225.0" text="Video" />
+               </children>
+            </HBox>
+            <ListView fx:id="playlistView" prefHeight="943.0" prefWidth="372.0" VBox.vgrow="ALWAYS" />
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <MenuButton fx:id="openFileMenuButton" alignment="CENTER" mnemonicParsing="false" prefWidth="500.0" text="OPEN FILE OR FOLDER">
+                    <items>
+                      <MenuItem mnemonicParsing="false" onAction="#handleAddFile" text="TAMBAH FILE" />
+                      <MenuItem mnemonicParsing="false" onAction="#handleAddPlaylistOrFolder" text="TAMBAH PLAYLIST" />
+                    </items>
+                  </MenuButton>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </right>
+   <center>
+      <BorderPane fx:id="rootInnerPane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <bottom>
+            <VBox fx:id="controlsVBox" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="1068.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Slider fx:id="progressSlider" />
+                  <HBox alignment="TOP_CENTER" prefHeight="10.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="currentTimeLabel" alignment="CENTER" text="00.00" />
+                        <Label text=" / " />
+                        <Label fx:id="totalDurationLabel" text="00.00" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Separator orientation="VERTICAL" prefHeight="100.0" prefWidth="30.0" />
+                        <Button fx:id="prevButton" mnemonicParsing="false" onAction="#handlePrevious" prefHeight="60.0" prefWidth="80.0" text="&lt;&lt;" HBox.hgrow="ALWAYS">
+                           <font>
+                              <Font size="28.0" />
+                           </font></Button>
+                        <Separator orientation="VERTICAL" prefHeight="100.0" prefWidth="33.0" />
+                        <Button fx:id="rewindButton" mnemonicParsing="false" onAction="#handleRewind" prefHeight="60.0" prefWidth="80.0" text="&lt;" HBox.hgrow="ALWAYS">
+                           <font>
+                              <Font size="28.0" />
+                           </font></Button>
+                        <Separator orientation="VERTICAL" prefHeight="100.0" prefWidth="31.0" />
+                        <Button fx:id="stopButton" mnemonicParsing="false" onAction="#handleStop" prefHeight="60.0" prefWidth="120.0" text="STOP" HBox.hgrow="ALWAYS">
+                           <font>
+                              <Font size="28.0" />
+                           </font></Button>
+                        <Separator orientation="VERTICAL" prefHeight="100.0" prefWidth="35.0" />
+                        <Button fx:id="playPauseButton" mnemonicParsing="false" onAction="#handlePlayPause" prefHeight="60.0" prefWidth="120.0" text="PLAY" HBox.hgrow="ALWAYS">
+                           <font>
+                              <Font size="28.0" />
+                           </font></Button>
+                        <Separator orientation="VERTICAL" prefHeight="100.0" prefWidth="35.0" />
+                        <Button fx:id="fastForwardButton" mnemonicParsing="false" onAction="#handleFastForward" prefHeight="60.0" prefWidth="80.0" text="&gt;" HBox.hgrow="ALWAYS">
+                           <font>
+                              <Font size="28.0" />
+                           </font></Button>
+                        <Separator orientation="VERTICAL" prefHeight="100.0" prefWidth="31.0" />
+                        <Button fx:id="nextButton" mnemonicParsing="false" onAction="#handleNext" prefHeight="60.0" prefWidth="80.0" text="&gt;&gt;" HBox.hgrow="ALWAYS">
+                           <font>
+                              <Font size="28.0" />
+                           </font></Button>
+                        <Separator orientation="VERTICAL" prefHeight="100.0" prefWidth="32.0" />
+                        <Slider fx:id="volumeSlider" prefHeight="28.0" prefWidth="299.0" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </bottom>
+         <center>
+            <StackPane fx:id="centerContentStackPane" BorderPane.alignment="CENTER">
+               <children>
+                  <MediaView fx:id="mediaView" fitHeight="860.0" fitWidth="1380.0" StackPane.alignment="CENTER" />
+                  <HBox fx:id="musicInfoPane" alignment="CENTER" prefHeight="800.0" prefWidth="2000.0" spacing="15.0" visible="false">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="880.0" prefWidth="1400.0" spacing="5.0">
+                           <children>
+                              <Label fx:id="musicTitleLabel" prefHeight="93.0" prefWidth="1030.0" text="Judul Music">
+                                 <font>
+                                    <Font size="48.0" />
+                                 </font></Label>
+                              <Label fx:id="musicArtistLabel" prefHeight="93.0" prefWidth="1018.0" text="Artis">
+                                 <font>
+                                    <Font size="48.0" />
+                                 </font></Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </StackPane>
+         </center>
+      </BorderPane>
+   </center>
+   <bottom>
+      <ImageView fx:id="albumArtImageView" fitHeight="1.0" fitWidth="1.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
+   </bottom>
+</BorderPane>
